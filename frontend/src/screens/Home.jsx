@@ -1,6 +1,9 @@
 import React from 'react';
 import { useAuth, SignOutButton } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Chatbot from './chatBot';
+
 
 
 
@@ -11,7 +14,13 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar/>
+       <Router>
+      <Navbar />
+      <Routes>
+        
+        <Route path="/chatbot" element={<Chatbot />} />
+      </Routes>
+    </Router>
       
      
       
