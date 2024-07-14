@@ -75,20 +75,23 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-const commands = [
-    { name: 'imageinfo', description: 'Provides info about the memory dump.', command: 'volatility -f memory_dump.raw imageinfo' },
-    { name: 'pslist', description: 'Lists all processes.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 pslist' },
-    { name: 'pstree', description: 'Shows processes in tree structure.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 pstree' },
-    { name: 'dlllist', description: 'Lists loaded DLLs.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 dlllist' },
-    { name: 'handles', description: 'Displays handles opened by processes.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 handles' },
-    { name: 'cmdscan', description: 'Retrieves command history.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 cmdscan' },
-    { name: 'consoles', description: 'Extracts console input/output.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 consoles' },
-    { name: 'filescan', description: 'Scans for file objects.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 filescan' },
-    { name: 'dumpfiles', description: 'Dumps content of files.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 dumpfiles -D /output_directory' },
-    { name: 'netscan', description: 'Scans for network connections.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 netscan' },
-    { name: 'malfind', description: 'Detects suspicious memory regions.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 malfind' },
-    { name: 'shimcache', description: 'Retrieves Shim Cache data.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 shimcache' },
-];
+// const commands = [
+//     { name: 'imageinfo', description: 'Provides info about the memory dump.', command: 'volatility -f memory_dump.raw imageinfo' },
+//     { name: 'pslist', description: 'Lists all processes.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 pslist' },
+//     { name: 'pstree', description: 'Shows processes in tree structure.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 pstree' },
+//     { name: 'dlllist', description: 'Lists loaded DLLs.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 dlllist' },
+//     { name: 'handles', description: 'Displays handles opened by processes.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 handles' },
+//     { name: 'cmdscan', description: 'Retrieves command history.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 cmdscan' },
+//     { name: 'consoles', description: 'Extracts console input/output.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 consoles' },
+//     { name: 'filescan', description: 'Scans for file objects.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 filescan' },
+//     { name: 'dumpfiles', description: 'Dumps content of files.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 dumpfiles -D /output_directory' },
+//     { name: 'netscan', description: 'Scans for network connections.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 netscan' },
+//     { name: 'malfind', description: 'Detects suspicious memory regions.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 malfind' },
+//     { name: 'shimcache', description: 'Retrieves Shim Cache data.', command: 'volatility -f memory_dump.raw --profile=Win7SP1x64 shimcache' },
+// ];
+
+import commands from '../commands';
+
 const CommandList = () => {
     const [search, setSearch] = useState('');
 

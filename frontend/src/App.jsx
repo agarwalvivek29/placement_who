@@ -59,9 +59,11 @@ import FileUpload from './components/FileUpload';
 import Analysis from './components/Analysis';
 import LandingPage from './components/LandingPage';
 import Navbar from "./components/Navbar";
-import ChatBot from "./screens/chatBot"
+import ChatBot from "./screens/chatBot";
+import { Toaster, toast } from 'sonner'
 
 import { useAuth } from '@clerk/clerk-react';
+import LogfileOverlay from './components/OverlayLog';
 
 const App = () => {
     const { isSignedIn } = useAuth();
@@ -95,6 +97,7 @@ const App = () => {
                     <Route path="/commands/:command" element={<CommandDetail />} />
                     <Route path="/upload" element={<FileUpload />} />
                     <Route path="/analysis" element={<Analysis />} />
+                    <Route path='/result' element={<LogfileOverlay />} />
                 </Routes>
                 {isSignedIn && (
                     <ChatBot
@@ -105,6 +108,7 @@ const App = () => {
                     />
                 )}
             </div>
+            <Toaster />
         </Router>
     );
 };
