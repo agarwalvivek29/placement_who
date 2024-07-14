@@ -123,12 +123,149 @@
 
 
 
+
+// //chl rha tha
+// import React from 'react';
+// import { SignInButton, useAuth, SignOutButton } from '@clerk/clerk-react';
+// import { Navbar, Nav } from 'react-bootstrap';
+
+// const NavBar = () => {
+//   const { isSignedIn } = useAuth();
+
+//   return (
+//     <Navbar bg="dark" variant="dark" expand="lg">
+//       <Navbar.Brand href="/">Volatility</Navbar.Brand>
+//       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//       <Navbar.Collapse id="basic-navbar-nav">
+//         <Nav className="ml-auto">
+//           <Nav.Link href="upload">Upload</Nav.Link>
+//           <Nav.Link href="#contact">Contact</Nav.Link>
+//           <Nav.Link href="commands">Commands</Nav.Link>
+//           {isSignedIn ? (
+//             <>
+              
+//               <SignOutButton>
+//                 <Nav.Link as="button" style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
+//                   Logout
+//                 </Nav.Link>
+//               </SignOutButton>
+//             </>
+//           ) : (
+//             <SignInButton>
+//               <Nav.Link as="button" style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
+//                 Login
+//               </Nav.Link>
+//             </SignInButton>
+//           )}
+//         </Nav>
+//       </Navbar.Collapse>
+//     </Navbar>
+//   );
+// };
+
+// export default NavBar;
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import { SignInButton, useAuth, SignOutButton } from '@clerk/clerk-react';
+// import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+
+// const NavBar = () => {
+//   const { isSignedIn } = useAuth();
+
+//   return (
+//     <Navbar bg="dark" variant="dark" expand="lg">
+//       <Navbar.Brand href="/">Volatility</Navbar.Brand>
+//       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+//       <Navbar.Collapse id="basic-navbar-nav">
+//         <Nav className="ml-auto">
+//           <Nav.Link href="upload">Upload</Nav.Link>
+//           <Nav.Link href="#contact">Contact</Nav.Link>
+//           <Nav.Link href="commands">Commands</Nav.Link>
+//           <div className="btn-group">
+//             <button
+//               className="btn btn-secondary btn-sm dropdown-toggle"
+//               type="button"
+//               data-bs-toggle="dropdown"
+//               aria-expanded="false"
+//             >
+//               Options
+//             </button>
+//             <ul className="dropdown-menu">
+//               <li><a className="dropdown-item" href="#option1">Option 1</a></li>
+//               <li><a className="dropdown-item" href="#option2">Option 2</a></li>
+//               <li><a className="dropdown-item" href="#option3">Option 3</a></li>
+//             </ul>
+//           </div>
+//           {isSignedIn ? (
+//             <SignOutButton>
+//               <Nav.Link
+//                 as="button"
+//                 style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+//               >
+//                 Logout
+//               </Nav.Link>
+//             </SignOutButton>
+//           ) : (
+//             <SignInButton>
+//               <Nav.Link
+//                 as="button"
+//                 style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+//               >
+//                 Login
+//               </Nav.Link>
+//             </SignInButton>
+//           )}
+//         </Nav>
+//       </Navbar.Collapse>
+//     </Navbar>
+//   );
+// };
+
+// export default NavBar;
+
+
+
+
 import React from 'react';
 import { SignInButton, useAuth, SignOutButton } from '@clerk/clerk-react';
 import { Navbar, Nav } from 'react-bootstrap';
+import Select from 'react-select';
+import dumpfiles from './memoryDumpFiles';
+import {setSelectedMemory} from './../App'; 
+
+const MemoryDumpDropdown = ({ onSelect }) => {
+  const options = dumpfiles
+
+  const handleChange = (selectedOption) => {
+    onSelect(selectedOption);
+    setSelectedMemory(selectedOption.location);
+  };
+
+  return (
+    <Select
+      options={options}
+      onChange={handleChange}
+      placeholder="Select a memory dump file"
+    />
+  );
+};
 
 const NavBar = () => {
   const { isSignedIn } = useAuth();
+
+  function setMemoryDump(selectedOption) {
+    console.log(selectedOption);
+  }
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -141,16 +278,22 @@ const NavBar = () => {
           <Nav.Link href="commands">Commands</Nav.Link>
           {isSignedIn ? (
             <>
-              
+              <MemoryDumpDropdown onSelect={setMemoryDump} />
               <SignOutButton>
-                <Nav.Link as="button" style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
+                <Nav.Link
+                  as="button"
+                  style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+                >
                   Logout
                 </Nav.Link>
               </SignOutButton>
             </>
           ) : (
             <SignInButton>
-              <Nav.Link as="button" style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
+              <Nav.Link
+                as="button"
+                style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}
+              >
                 Login
               </Nav.Link>
             </SignInButton>

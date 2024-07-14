@@ -61,9 +61,17 @@ import LandingPage from './components/LandingPage';
 import Navbar from "./components/Navbar";
 import ChatBot from "./screens/chatBot";
 import { Toaster, toast } from 'sonner'
+import ChatBot from "./screens/chatBot"
+import DropdownWithButton from "./components/DropdownWithButton"
 
 import { useAuth } from '@clerk/clerk-react';
 import LogfileOverlay from './components/OverlayLog';
+
+export let selectedMemory = null;
+
+export function setSelectedMemory(memory) {
+  selectedMemory = memory;
+}
 
 const App = () => {
     const { isSignedIn } = useAuth();
@@ -97,7 +105,11 @@ const App = () => {
                     <Route path="/commands/:command" element={<CommandDetail />} />
                     <Route path="/upload" element={<FileUpload />} />
                     <Route path="/analysis" element={<Analysis />} />
+<<<<<<< HEAD
                     <Route path='/result' element={<LogfileOverlay />} />
+=======
+                    <Route path="/dropdown" element={<DropdownWithButton />} />
+>>>>>>> 190c6cd (memory selection)
                 </Routes>
                 {isSignedIn && (
                     <ChatBot

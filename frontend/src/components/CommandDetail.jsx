@@ -155,17 +155,32 @@ const CommandDetail = () => {
     }
 
     return (
-        <div className="container text-white mt-4">
+        <div className="container-fluid text-white bg-black p-4">
             <div className="command-detail-container bg-dark p-4 shadow-lg rounded">
                 <h2 className="text-center">{commandDetail.name}</h2>
                 <p>{commandDetail.description}</p>
                 <h5>Usage:</h5>
-                <pre className="bg-secondary p-3 rounded">{commandDetail.command('<vol.py>','<your_memory_dump_file_location>')}</pre>
-                <button onClick={()=>{
-                    const newCommand = commandDetail.command('C:\\Users\\amans\\volatility3\\vol.py', 'D:\\memory_dump\\memdump.mem')
-                    console.log(newCommand)
-                    handleScanMalicious(newCommand)
-                }} className="btn btn-primary mt-3">Perform Analysis</button>
+                <pre className="bg-secondary p-3 rounded">{commandDetail.command}</pre>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="prompt">Enter your prompt:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="prompt"
+                            value={prompt}
+                            onChange={(e) => setPrompt(e.target.value)}
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary mt-3 btn-grad">Submit</button>
+                </form>
+                <button onClick={handleScanMalicious} className="btn btn-danger mt-3 ">Scan for Malicious Data</button>
+                {response && (
+                    <div className="mt-4">
+                        <h5>Response:</h5>
+                        <pre className="bg-secondary p-3 rounded">{response}</pre>
+                    </div>
+                )}
             </div>
             <LogfileOverlay logfileContent={data}/>
         </div>
