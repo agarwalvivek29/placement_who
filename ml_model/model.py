@@ -1,38 +1,19 @@
-# from fastapi import FastAPI
-# from pydantic import BaseModel
-# import pickle
-
-# app = FastAPI()
-
-# # Load your ML model
-# with open('model.pkl', 'rb') as f:
-#     model = pickle.load(f)
-
-# class PredictionRequest(BaseModel):
-#     data: list  # Adjust according to your input data structure
-
-# @app.post('/predict')
-# def predict(request: PredictionRequest):
-#     prediction = model.predict(request.data)
-#     return {"prediction": prediction.tolist()}  # Adjust response format as needed
-
-
-
-
 from fastapi import FastAPI
 from pydantic import BaseModel
-import pickle
+import joblib
 
 app = FastAPI()
 
 # Load your ML model
-with open('scaler.pkl', 'rb') as f:
-    model = pickle.load(f)
+scaler = joblib.load('scaler.pkl')
+# Load your actual model (if you have one)
+# model = load_your_model_function('model.h5')  # Example for loading model
 
 class PredictionRequest(BaseModel):
     data: list  # Adjust according to your input data structure
 
 @app.post('/predict')
 def predict(request: PredictionRequest):
-    prediction = model.predict([request.data])  # Ensure input shape matches your model
+    scaled_data = scaler.transform([request.data])  # Scale the input data
+    prediction = model.predict(scaled_data)  # Ensure input shape matches your model
     return {"prediction": prediction.tolist()}  # Adjust response format as needed

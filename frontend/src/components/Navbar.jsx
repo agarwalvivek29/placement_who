@@ -32,10 +32,10 @@
 //             <button style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
 //               Logout
 //             </button>
-            
+
 //           </SignOutButton>
 //           </>
-          
+
 //         ) : (
 //           <SignInButton>
 //             <button style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
@@ -143,7 +143,7 @@
 //           <Nav.Link href="commands">Commands</Nav.Link>
 //           {isSignedIn ? (
 //             <>
-              
+
 //               <SignOutButton>
 //                 <Nav.Link as="button" style={{ background: 'transparent', border: 'none', color: 'white', cursor: 'pointer' }}>
 //                   Logout
@@ -241,7 +241,7 @@ import { SignInButton, useAuth, SignOutButton } from '@clerk/clerk-react';
 import { Navbar, Nav } from 'react-bootstrap';
 import Select from 'react-select';
 import dumpfiles from './memoryDumpFiles';
-import {setSelectedMemory} from './../App'; 
+import { setSelectedMemory } from './../App';
 
 const MemoryDumpDropdown = ({ onSelect }) => {
   const options = dumpfiles
