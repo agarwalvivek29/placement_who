@@ -1,0 +1,12 @@
+.command-detail-container {
+    max-width: 600px; /* Adjust as needed */
+    margin: auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h5 {
+    margin-top: 20px;
+}
